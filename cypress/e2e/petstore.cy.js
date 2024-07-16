@@ -34,4 +34,16 @@ describe('PetStore API tests', () => {
     });
   });
 
+  it('Should delete user', () => {
+    cy.request("POST", "/user", user).then((response) => {
+      cy.log(JSON.stringify(response.body));
+      expect(response.status).be.eql(200);
+    });
+
+    cy.request("DELETE",`/user/${user.username}`,).then((response) => {
+    cy.log(JSON.stringify(response.body));
+    expect(response.status).be.eql(200);
+    });
+  });
+
 });
